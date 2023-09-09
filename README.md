@@ -16,7 +16,7 @@ Follow the MVC paradigm.
 ## Todo
 - Visiting for the first time
   - Home page
-  - Navbar: Home, Dahsboard, Login
+  - Navbar: Home, Dashboard, Login
 - Home page
   - Posted blogs in a list
 - Login page
