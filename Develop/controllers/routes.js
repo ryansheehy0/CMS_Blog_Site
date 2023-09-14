@@ -48,7 +48,19 @@ router.get("/dashboard", (req, res) => {
   res.render("dashboard", {
     path: "/login",
     pathName: "Login",
-    pageName: "Your Dashboard"
+    pageName: "Your Dashboard",
+    posts: [
+      {
+        id: 1,
+        title: "Object-Relational Mapping",
+        date: "5/8/2020"
+      },
+      {
+        id: 2,
+        title: "Object-Relationa",
+        date: "5/8/2022"
+      },
+    ]
   })
 
 })

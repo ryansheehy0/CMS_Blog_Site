@@ -4,10 +4,12 @@ const sequelize = require("./connection")
 const exphbs = require("express-handlebars")
 const hbs = exphbs.create({})
 const routes = require("./controllers/routes")
+const path = require("path")
 
-app.engine('hbs', hbs.engine)
-app.set('view engine', 'hbs')
+app.engine('handlebars', hbs.engine)
+app.set('view engine', 'handlebars')
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, "/public")))
 app.use("/", routes)
 
 sequelize.sync().then(() => {

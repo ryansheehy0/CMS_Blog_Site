@@ -30,3 +30,8 @@ Follow the MVC paradigm.
   - Click on posts to leave comment
 - When logged in option to log out
 - Deploy to Heroku
+
+- Find way to edit posts
+- Find ay to add comments
+- Database Schema
+- Login/Create account
