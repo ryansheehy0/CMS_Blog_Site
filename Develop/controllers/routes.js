@@ -52,11 +52,13 @@ router.get("/dashboard", (req, res) => {
     posts: [
       {
         id: 1,
+        content: "This is a test",
         title: "Object-Relational Mapping",
         date: "5/8/2020"
       },
       {
         id: 2,
+        content: "This is a test2",
         title: "Object-Relationa",
         date: "5/8/2022"
       },

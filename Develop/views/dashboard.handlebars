@@ -1,23 +1,10 @@
-<div id="createNewPostBox" class="w-11/12 border-4 border-amber-950 h-fit my-4 hidden">
-  <div class="w-full bg-amber-950 flex justify-between items-center">
-      <h2 class="text-green-200 text-xl ml-2">Create New Post</h2>
-  </div>
-  <form action="/newpost" method="post" class="text-amber-950 m-4">
-    <h3 class="text-lg">Title</h3>
-    <input type="text" name="title" class="w-full text-base text-black h-8 focus:outline-none pl-1">
-
-    <h3 class="text-lg mt-4">Content</h3>
-    <textarea name="content" class="w-full text-base text-black h-16 focus:outline-none pl-1"></textarea>
-
-    <input type="submit" value="Create" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
-
-  </form>
-</div>
+{{> dashboard/createNewPost}}
+{{> dashboard/editPost}}
 
 <div id="postContainer" class="w-screen h-[calc(100vh-(128px+8px+8px+32px+8px))] overflow-y-auto flex flex-col items-center gap-y-2 mt-2">
   {{#each posts}}
-  <div id="{{id}}" class="w-11/12 bg-gray-600 text-white flex justify-between rounded-lg h-8 min-h-8 items-center px-4">
-    <p>{{this.title}}</p>
+  <div id="{{this.id}}" data-content="{{this.content}}" class="w-11/12 bg-gray-600 text-white flex justify-between rounded-lg h-8 min-h-8 items-center px-4">
+    <p data-name="title">{{this.title}}</p>
     <p>{{this.date}}</p>
   </div>
   {{/each}}

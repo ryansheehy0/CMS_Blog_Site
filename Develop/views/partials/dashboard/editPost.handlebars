@@ -1,0 +1,17 @@
+<div id="editPost" class="w-11/12 border-4 border-amber-950 h-fit my-4 hidden">
+  <div class="w-full bg-amber-950 flex justify-between items-center">
+      <h2 class="text-green-200 text-xl ml-2">Edit Post</h2>
+  </div>
+  <form class="text-amber-950 m-4">
+    <h3 class="text-lg">Title</h3>
+    <input type="text" name="title" class="w-full text-base text-black h-8 focus:outline-none pl-1">
+
+    <h3 class="text-lg mt-4">Content</h3>
+    <textarea name="content" class="w-full text-base text-black h-16 focus:outline-none pl-1"></textarea>
+
+    <input data-name="updatePost" type="submit" value="Update Post" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
+    <input data-name="deletePost" type="submit" value="Delete" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
+
+    <button data-name="cancelButton" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">Cancel</button>
+  </form>
+</div>
