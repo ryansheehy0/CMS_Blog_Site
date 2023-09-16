@@ -1,36 +1,38 @@
 const router = require("express").Router()
+const login = require("./login")
+const dashboard = require("./dashboard")
+const logout = require("./logout")
+const { User, Post, Comment } = require("../models/index")
 
-router.get("/", (req, res) => {
-  res.render("home",{
-    path: "/login",
-    pathName: "Login",
-    pageName: "The Tech Blog"
-  })
-})
+router.use("/login", login)
+router.use("/dashboard", dashboard)
+router.use("/logout", logout)
 
-router.get("/login", (req, res) => {
-  res.render("login", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "Th Tech Blog"
-  })
-})
-
-router.post("/login", (req, res) => {
-  console.log(req.body.username)
-  console.log(req.body.password)
-  res.render("login", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "Th Tech Blog"
-  })
+router.get("/", async (req, res) => {
+  try{
+    let posts = await Post.findAll({
+      include: [
+        {model: User}
+      ]
+    })
+    posts = posts.map(post => post.get({plain: true}))
+    res.render("home",{
+      path: req.session.loggedInUser ? "/logout" : "/login",
+      pathName: req.session.loggedInUser ? "Logout" : "Login",
+      pageName: "The Tech Blog",
+      posts: posts
+    })
+  }catch(error){
+    console.error(error)
+    res.sendStatus(500)
+  }
 })
 
 router.get("/signup", (req, res) => {
   res.render("signup", {
     path: "/login",
     pathName: "Login",
-    pageName: "Th Tech Blog"
+    pageName: "The Tech Blog"
   })
 })
 
@@ -42,29 +44,6 @@ router.post("/signup", (req, res) => {
     pathName: "Login",
     pageName: "Th Tech Blog"
   })
-})
-
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "Your Dashboard",
-    posts: [
-      {
-        id: 1,
-        content: "This is a test",
-        title: "Object-Relational Mapping",
-        date: "5/8/2020"
-      },
-      {
-        id: 2,
-        content: "This is a test2",
-        title: "Object-Relationa",
-        date: "5/8/2022"
-      },
-    ]
-  })
-
 })
 
 module.exports = router

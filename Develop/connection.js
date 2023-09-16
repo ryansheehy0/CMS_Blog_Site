@@ -9,5 +9,4 @@ const sequelize = process.env.JAWSDB_URL
     dialect: `mysql`
   })
 
-
 module.exports = sequelize

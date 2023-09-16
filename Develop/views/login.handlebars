@@ -9,6 +9,10 @@
     <h3 class="text-lg mt-4">Password</h3>
     <input type="password" name="password" class="w-full text-base text-black h-8 focus:outline-none pl-1">
 
+    {{#unless isLogin}}
+    <p class="text-red-600 text-xs">Username or password is wrong.</p>
+    {{/unless}}
+
     <input type="submit" value="Login!" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
 
     <a href="/signup" class="text-blue-600">Sign up instead</a>
