@@ -39,7 +39,7 @@ If you aren't logged in you can look at all the posts on the home page.<br><br>Y
 - [sequelize](https://www.npmjs.com/package/sequelize)
 
 ## Tests
-Just install and run the app.
+Just [install](#installation) and run the app.
 
 ## Issues/Questions
 If you have any problems please specify what the problem is and the exact steps that lead you to your problem.
