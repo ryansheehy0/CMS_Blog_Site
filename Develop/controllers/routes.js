@@ -2,11 +2,13 @@ const router = require("express").Router()
 const login = require("./login")
 const dashboard = require("./dashboard")
 const logout = require("./logout")
+const signup = require("./signup")
 const { User, Post, Comment } = require("../models/index")
 
 router.use("/login", login)
 router.use("/dashboard", dashboard)
 router.use("/logout", logout)
+router.use("/signup", signup)
 
 router.get("/", async (req, res) => {
   try{
@@ -28,22 +30,5 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.get("/signup", (req, res) => {
-  res.render("signup", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "The Tech Blog"
-  })
-})
-
-router.post("/signup", (req, res) => {
-  console.log(req.body.username)
-  console.log(req.body.password)
-  res.render("signup", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "Th Tech Blog"
-  })
-})
 
 module.exports = router

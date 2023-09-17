@@ -35,3 +35,8 @@ Follow the MVC paradigm.
 - Find ay to add comments
 - Database Schema
 - Login/Create account
+
+- Add comments on home page only when logged in
+- New post
+- Edit post
+- Delete post
