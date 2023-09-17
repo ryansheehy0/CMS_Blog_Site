@@ -13,9 +13,11 @@
   <div class="w-full bg-amber-950 flex justify-between items-center">
       <h2 class="text-green-200 text-xl ml-2">Add a comment</h2>
   </div>
-  <form action="/comment" method="post" class="text-amber-950 m-4">
+  <form action="/comments" method="post" class="text-amber-950 m-4">
     <h3 class="text-lg">Comment</h3>
     <textarea name="comment" class="w-full text-base text-black h-16 focus:outline-none pl-1"></textarea>
+
+    <input type="hidden" name="postId" value="{{post.id}}">
 
     <input type="submit" value="Comment" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
   </form>

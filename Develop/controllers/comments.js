@@ -1,7 +1,8 @@
 const router = require("express").Router()
+const isAuth = require("../utils/auth")
 const { User, Post, Comment } = require("../models/index")
 
-router.get("/:postId", async (req, res) => {
+router.get("/:postId", isAuth, async (req, res) => {
   const postId = req.params.postId
   console.log(`postId: ${postId}`)
 
@@ -24,34 +25,26 @@ router.get("/:postId", async (req, res) => {
   })
   comments = comments.map(comment => comment.get({plain: true}))
 
-  console.log(comments)
-
   res.render("comments", {
-    path: "/login",
-    pathName: "Login",
+    path: "/logout",
+    pathName: "Logout",
     pageName: "The Tech Blog",
     post: post,
     comments: comments
   })
 })
 
-/*
-router.get("/", (req, res) => {
-  res.render("comments", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "The Tech Blog"
-  })
-})
-*/
+router.post("/", isAuth, async (req, res) => {
+  const post_id = req.body.postId
+  const comment = req.body.comment
 
-// Todo
-router.post("/", (req, res) => {
-  res.render("comments", {
-    path: "/login",
-    pathName: "Login",
-    pageName: "The Tech Blog"
+  await Comment.create({
+    comment,
+    user_id: req.session.loggedInUser,
+    post_id
   })
+
+  res.redirect(`/comments/${post_id}`)
 })
 
 

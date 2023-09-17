@@ -1,5 +1,5 @@
 {{#each posts}}
- <div class="w-11/12 border-4 border-amber-950 h-fit my-4">
+ <div data-name="post" data-postid="{{this.id}}" class="w-11/12 border-4 border-amber-950 h-fit my-4">
     <div class="w-full bg-amber-950 flex justify-between items-center">
         <h2 class="text-green-200 text-xl ml-2">{{this.title}}</h2>
         <p class="text-green-200 text-xs mr-2">Posted by {{this.user.username}} on {{format_date this.updatedAt}}</p>
@@ -9,3 +9,5 @@
     </p>
  </div>
 {{/each}}
+
+<script src="/js/home.js" defer></script>
