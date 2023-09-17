@@ -3,12 +3,14 @@ const login = require("./login")
 const dashboard = require("./dashboard")
 const logout = require("./logout")
 const signup = require("./signup")
+const comments = require("./comments")
 const { User, Post, Comment } = require("../models/index")
 
 router.use("/login", login)
 router.use("/dashboard", dashboard)
 router.use("/logout", logout)
 router.use("/signup", signup)
+router.use("/comments", comments)
 
 router.get("/", async (req, res) => {
   try{

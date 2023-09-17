@@ -1,0 +1,31 @@
+ <div class="w-11/12 border-4 border-amber-950 h-fit my-4">
+    <div class="w-full bg-amber-950 flex justify-between items-center">
+        <h2 class="text-green-200 text-xl ml-2">{{post.title}}</h2>
+        <p class="text-green-200 text-xs mr-2">Posted by {{post.user.username}} on {{format_date post.updatedAt}}</p>
+    </div>
+    <p class="text-amber-950 m-4">
+        {{post.content}}
+    </p>
+ </div>
+
+<!-- Add comment box -->
+<div class="w-11/12 border-4 border-amber-950 h-fit my-4">
+  <div class="w-full bg-amber-950 flex justify-between items-center">
+      <h2 class="text-green-200 text-xl ml-2">Add a comment</h2>
+  </div>
+  <form action="/comment" method="post" class="text-amber-950 m-4">
+    <h3 class="text-lg">Comment</h3>
+    <textarea name="comment" class="w-full text-base text-black h-16 focus:outline-none pl-1"></textarea>
+
+    <input type="submit" value="Comment" class="w-full text-lg text-white bg-gray-600 mt-4 py-1 rounded">
+  </form>
+</div>
+
+{{#each comments}}
+ <div class="w-11/12 border-4 border-amber-950 h-fit my-4">
+    <p class="text-amber-950 m-4">
+        {{this.comment}}
+    </p>
+    <p class="text-amber-950 m-4 indent-4">- {{this.user.username}}, {{format_date this.updatedAt}}</p>
+ </div>
+{{/each}}
