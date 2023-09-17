@@ -5,6 +5,8 @@
   const postContainer = document.querySelector("#postContainer")
   const editPost = document.querySelector("#editPost")
     const cancelEditPost = editPost.querySelector(`[data-name="cancelButton"]`)
+    const editPostTitle = editPost.querySelector(`[name="title"]`)
+    const editPostContent = editPost.querySelector(`[name="content"]`)
     const updatePost = editPost.querySelector(`[data-name="updatePost"]`)
     const deletePost = editPost.querySelector(`[data-name="deletePost"]`)
     const editPostForm = editPost.querySelector(`form`)
@@ -41,6 +43,7 @@
 // Posts
   posts.forEach((post) => {
     post.addEventListener("click", () => {
+      editPost.dataset.postid = post.id
       // get and set title
       const title = post.querySelector(`[data-name="title"]`).textContent
       editPost.querySelector(`[name="title"]`).value = title
@@ -69,12 +72,38 @@
 
 // Update Post
   updatePost.addEventListener("click", (event) => {
-    editPostForm.setAttribute("action", "/updatepost")
-    editPostForm.setAttribute("method", "put")
+    event.preventDefault()
+    const postId = editPost.dataset.postid
+    const title = editPostTitle.value
+    const content = editPostContent.value
+    fetch(window.location.origin + "/post/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        postId,
+        title,
+        content
+      })
+    })
+    .then(() => window.location.href = "/dashboard")
+    .catch((error) => console.error(error))
   })
 
 // Delete Post
   deletePost.addEventListener("click", (event) => {
-    editPostForm.setAttribute("action", "/deletepost")
-    editPostForm.setAttribute("method", "delete")
+    event.preventDefault()
+    const postId = editPost.dataset.postid
+    fetch(window.location.origin + "/post/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        postId
+      })
+    })
+    .then(() => window.location.href = "/dashboard")
+    .catch((error) => console.error(error))
   })
