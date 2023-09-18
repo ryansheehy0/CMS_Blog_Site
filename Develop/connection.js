@@ -1,18 +1,13 @@
 const Sequelize = require("sequelize")
 require("dotenv").config()
 
-const databaseUrl = process.env.DATABASE_URL; // Assuming Heroku provides a DATABASE_URL in clearDB format
-
-const sequelize = new Sequelize(databaseUrl, {
-  dialect: 'mysql',
-  protocol: 'mysql',
-  logging: false, // Disable logging if not needed
-  dialectOptions: {
-    ssl: 'Amazon RDS', // For SSL connection on Heroku
-  },
-  define: {
-    timestamps: false, // If you want timestamps in your models
-  },
-});
+// Connection provided by JAWSDB_URL which is what Heroku uses
+const sequelize = process.env.JAWSDB_URL
+  ? new Sequelize(process.env.JAWSDB_URL)
+  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+    host: `localhost`,
+    port: 3306,
+    dialect: `mysql`
+  })
 
 module.exports = sequelize
