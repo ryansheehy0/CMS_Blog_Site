@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize")
 require("dotenv").config()
 
-const Sequelize = require('sequelize');
-
 const databaseUrl = process.env.CLEARDB_DATABASE_URL; // Assuming Heroku provides a DATABASE_URL in clearDB format
 
 const sequelize = new Sequelize(databaseUrl, {
